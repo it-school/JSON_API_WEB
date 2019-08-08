@@ -19,14 +19,12 @@ namespace JSON_API_WEB
             GetWeatherDataSync();
             Console.WriteLine("Sync data load: " + lastError);
 
-            // Получение данных в асинхронном режиме
-            /*            
+            // Получение данных в асинхронном режиме    
             GetWeatherDataAsync().Wait();
             Console.WriteLine("Async data load: " + lastError);
-            */
+            
 
             // Получение данных в асинхронном режиме
-            /*
             GetWeatherDataAsync2();
 
             DateTime start = DateTime.Now, now;
@@ -49,18 +47,19 @@ namespace JSON_API_WEB
                 Console.WriteLine("\nPress any key to continue...");
                 Console.ReadKey();
             }
-            */
+            
 
             Console.WriteLine(weather);
             if (weather != "")
             {
-//                JObject details = JObject.Parse(weather);
-//                Console.WriteLine(details);
-//                Console.WriteLine(details.GetValue("sys"));
-//                Console.WriteLine(details.GetValue("sys").Value<String>("country"));
+                JObject details = JObject.Parse(weather);
+                Console.WriteLine(details);
+                Console.WriteLine(details.GetValue("name"));
+                Console.WriteLine(details.GetValue("sys"));
+                Console.WriteLine(details.GetValue("sys").Value<String>("country"));
 
-//                WeatherInfo currentWeather = JsonConvert.DeserializeObject<WeatherInfo>(weather);
-//                Console.WriteLine($"{currentWeather.Name}({currentWeather.Coord.Lat} - {currentWeather.Coord.Lon})");
+                WeatherInfo currentWeather = JsonConvert.DeserializeObject<WeatherInfo>(weather);
+                Console.WriteLine($"{currentWeather.Name}({currentWeather.Coord.Lat} - {currentWeather.Coord.Lon})");
             }
             else
             {
